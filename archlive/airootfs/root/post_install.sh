@@ -12,3 +12,7 @@ ExecStart=-/usr/bin/agetty --autologin root --noclear %I $TERM
 EOF
 systemctl daemon-reload
 systemctl enable getty@tty1.service
+
+systemctl enable NetworkManager.service
+
+echo "fastfetch" >>  /etc/profile

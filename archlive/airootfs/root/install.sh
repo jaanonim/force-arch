@@ -86,7 +86,7 @@ echo "Done"
 
 
 echo "Install:"
-pacstrap -K /mnt base linux linux-firmware grub efibootmgr
+pacstrap -K /mnt base linux linux-firmware grub efibootmgr networkmanager fastfetch
 echo "Done!"
 
 echo "Setup fstub:"

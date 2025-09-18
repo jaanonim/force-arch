@@ -17,7 +17,7 @@ cache:
     mkdir -p /tmp/pacman-cache
     mkdir -p /mnt/archlive/airootfs/root/offline-packages
 
-    pacman --noconfirm --dbpath /tmp/ -Syu -w --cachedir /tmp/pacman-cache base linux linux-firmware grub efibootmgr
+    pacman --noconfirm --dbpath /tmp/ -Syu -w --cachedir /tmp/pacman-cache base linux linux-firmware grub efibootmgr networkmanager fastfetch
     repo-add /tmp/pacman-cache/custom.db.tar.gz /tmp/pacman-cache/*[^sig]
     
     cp /tmp/pacman-cache/*.pkg.tar.* /mnt/archlive/airootfs/root/offline-packages/

@@ -10,9 +10,8 @@ Plugin pendrive with this iso and boot form it. Now you have wiped your disk and
 For now this script assumes:
 
 - You have UEFI system
-- You have drive /dev/sda on witch arch will be installed
 
-If you have other drive (eg. nvme) you need to change it in `archlive/airootfs/root/.zlogin` script. Or after booting run `./install.sh <drive-path>` from this repo (It will fail to auto run with not existing drive).
+It will install on first drive (will prefer nvme drive). If you want to install on other drive quickly pres CTLR-C and run `./install.sh <drive-path>` from this repo.
 
 ## Build
 

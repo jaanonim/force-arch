@@ -4,4 +4,4 @@ if grep -Fqa 'accessibility=' /proc/cmdline &> /dev/null; then
 fi
 
 ~/.automated_script.sh
-~/install.sh /dev/sda
+~/install.sh

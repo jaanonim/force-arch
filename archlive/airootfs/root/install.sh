@@ -1,16 +1,26 @@
 #!/bin/bash
-
-# Simple Arch Linux Drive Formatting Script
-# Usage: ./format-drive.sh /dev/sdX
+# Usage: ./install.sh /dev/sdX
 
 set -e
 
-DRIVE="$1"
-
-if [ -z "$DRIVE" ]; then
-    echo "Usage: $0 <device>"
-    echo "Example: $0 /dev/sda"
+if [ "$EUID" -ne 0 ]; then
+    echo "Error: Run as root"
     exit 1
+fi
+
+echo "Available drives:"
+fdisk -l
+echo "================"
+
+# Check if drive is provided as argument
+if [ -n "$1" ]; then
+    DRIVE="$1"
+else
+    # Auto-detect drive
+    DRIVE=$(lsblk -dno NAME,TYPE | awk '$2=="disk"{print "/dev/"$1}' | grep -E 'nvme|mmcblk' | head -1)
+    if [ -z "$DRIVE" ]; then
+        DRIVE=$(lsblk -dno NAME,TYPE | awk '$2=="disk"{print "/dev/"$1}' | head -1)
+    fi
 fi
 
 if [ ! -b "$DRIVE" ]; then
@@ -18,11 +28,8 @@ if [ ! -b "$DRIVE" ]; then
     exit 1
 fi
 
-if [ "$EUID" -ne 0 ]; then
-    echo "Error: Run as root"
-    exit 1
-fi
-
+echo "Installing on $DRIVE... (in 5s)"
+sleep 5
 echo "Formatting $DRIVE..."
 
 # Unmount existing partitions
